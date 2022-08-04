@@ -1,7 +1,6 @@
 import React from "react"
-import Quiz from "./components/Quiz"
 import {nanoid} from "nanoid"
-import Shuffle from "./components/Shuffle"
+import Main from "./components/Main"
 
 function App() {
   
@@ -33,20 +32,6 @@ function App() {
     )
   }
 
-
-  function setupQuiz() { 
-      Shuffle(myQuiz)
-      return myQuiz.map(quiz => {
-        return (
-            <Quiz 
-            question={quiz.question}
-            correctAnswer={quiz.correctAnswer}
-            incorrectAnswers={quiz.incorrectAnswers}
-            difficulty={quiz.difficulty}
-            key={quiz.id}/>
-        )
-    })
-  }
   
   function startGame() {
     setPlaying(prevPlaying => !prevPlaying)
@@ -57,7 +42,7 @@ function App() {
     playing ?
     <div className="main">
       <div className="quiz--holder">
-       {setupQuiz()}
+       <Main quiz={myQuiz} />
       </div>
     </div>
     : 

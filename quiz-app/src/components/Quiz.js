@@ -1,6 +1,6 @@
 import React from "react"
-import Shuffle from "./Shuffle"
 import {nanoid} from "nanoid"
+import Shuffle from "./Shuffle"
 
 export default function Quiz(props){
 
@@ -41,7 +41,8 @@ export default function Quiz(props){
 
 
     function makeButtons() {
-        return answerData.map(answer => {
+        const shuffled = Shuffle(answerData)
+        return shuffled.map(answer => {
         
             return (
                 <button 
