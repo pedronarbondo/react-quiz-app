@@ -14,13 +14,17 @@ export default function Main(props) {
                     answers={question.answers}
                     difficulty={question.difficulty}
                     key={nanoid()}
+                    selected={false}
                 />
             )
         })
 
     return (
-        <div className="quiz--container">
+        <div className="main">
+            <div className="quiz--container">
             {mappedQuestions}
+            </div>
+            <button className="submit-button">Submit answers</button>
         </div>
     )
 }
