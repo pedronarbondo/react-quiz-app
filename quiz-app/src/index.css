@@ -32,11 +32,31 @@ body {
   cursor: pointer;
 }
 
+.quiz {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
 
-
-
+.quiz--question {
+  max-width: 60ch;
+}
 .line-break {
   width: 95%;
   margin-top: 30px;
 }
 
+.button--answer {
+  font-family: inherit;
+  font-weight: bold;
+  font-size: 1.02rem; 
+  border: none;
+  background-color: rgb(68, 68, 107);
+  color: white;
+  margin-right: 30px;
+  border-radius: 6px;
+  padding: 8px 20px;
+  width: fit-content;
+  cursor: pointer;
+}

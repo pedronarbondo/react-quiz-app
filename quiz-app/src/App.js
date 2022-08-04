@@ -1,16 +1,42 @@
 import React from "react"
-import {nanoid} from "nanoid"
+import Main from "./components/Main"
 
 function App() {
-  const [playing, setPlaying] = React.useState(false)
+  const [playing, setPlaying] = React.useState(false)  
+  const [apiData, setApiData] = React.useState()
+  const [questions, setQuestions] = React.useState([{}])
 
+  React.useEffect(() => {
+      fetch("https://opentdb.com/api.php?amount=5&type=multiple")
+      .then(res => res.json())
+      .then(data => setApiData(data.results))
+    }, [])
+  
+  function loadQuestions() {
+    setQuestions(() => {
+      return apiData.map(datapoint => {
+        return {
+          question: datapoint.question,
+          answers:
+            {
+              correctAnswer: datapoint.correct_answer,
+              incorrectAnswers: datapoint.incorrect_answers
+            },
+            difficulty: datapoint.difficulty
+        }
+      })
+    })
+  }
   function startGame() {
+    loadQuestions()
     setPlaying(prevPlaying => !prevPlaying)
   }
   
+
   return (
     playing ?
     <div className="main">
+      <Main questions={questions}/>
     </div>
     : 
 
