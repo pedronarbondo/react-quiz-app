@@ -57,16 +57,21 @@ body {
 
 .quiz--title {
   width: 50ch;
-  font-size: 1.1rem;
+  font-size: 1.2rem;
 }
 
 .answer-button {
   border-radius: 8px;
   font-family: inherit;
   font-weight: bold;
+  font-size: 1.1rem;
   padding: 5px 8px;
   width: fit-content;
   border: none;
   box-shadow: 1px 1px 3px black;
   cursor: pointer;
+}
+
+.answer--selected {
+  background-color: green;
 }
