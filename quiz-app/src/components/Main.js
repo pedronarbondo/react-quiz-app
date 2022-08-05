@@ -6,25 +6,68 @@ import { nanoid } from "nanoid"
 
 export default function Main(props) {
     const { questions } = props
+    const [allAnswers, setAllAnswers] = React.useState([{}])
+    
+    React.useEffect(() => {
+        return (
+            setAllAnswers(questions.map(question => {
+                return {
+                    id: nanoid(),
+                    key: nanoid(),
+                    title: question.question,
+                    options: 
+                    [
+                        {
+                            correctAnswer: question.answers.correctAnswer,
+                            selected: false
+                        },
+                        {
+                            incorrectAnswer1: question.answers.incorrectAnswers[0],
+                            selected: false
+                        },
+                        {
+                            incorrectAnswer1: question.answers.incorrectAnswers[1],
+                            selected: false
+                        },
+                        {
+                            incorrectAnswer1: question.answers.incorrectAnswers[2],
+                            selected: false
+                        },
+                    ],
+                    selectedAnswer: "",
+                    difficulty: question.difficulty
+        
+                }
+            }))
+        )
+    }, [])
 
-     const mappedQuestions= questions.map(question => {
-            return (
-                <Quiz 
-                    question={question.question}
-                    answers={question.answers}
-                    difficulty={question.difficulty}
-                    key={nanoid()}
-                    selected={false}
-                />
-            )
-        })
+    function toggle(id) {
+        console.log(id)
+    }
+
+    const myQuiz = 
+    allAnswers.map(quiz => {
+        return (
+            <Quiz 
+                id={quiz.id}
+                key={quiz.key}
+                question={quiz.title}
+                options={quiz.options}
+                difficulty={quiz.difficulty}
+                toggle={toggle}
+            />
+        )
+    })
 
     return (
         <div className="main">
             <div className="quiz--container">
-            {mappedQuestions}
+
             </div>
-            <button className="submit-button">Submit answers</button>
+            <button 
+                className="submit-button"
+                >Submit answers</button>
         </div>
     )
 }

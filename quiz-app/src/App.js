@@ -20,6 +20,7 @@ function App() {
           answers:
             {
               correctAnswer: datapoint.correct_answer,
+              selectedAnswer: "",
               incorrectAnswers: datapoint.incorrect_answers
             },
             difficulty: datapoint.difficulty
