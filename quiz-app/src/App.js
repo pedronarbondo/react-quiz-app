@@ -1,5 +1,6 @@
 import React from "react"
 import Main from "./components/Main"
+import { nanoid } from "nanoid"
 
 function App() {
   const [playing, setPlaying] = React.useState(false)  
@@ -16,6 +17,7 @@ function App() {
     setQuestions(() => {
       return apiData.map(datapoint => {
         return {
+          key: nanoid(),
           question: datapoint.question,
           answers:
             {

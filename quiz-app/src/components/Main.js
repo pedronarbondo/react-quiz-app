@@ -7,10 +7,8 @@ import { nanoid } from "nanoid"
 export default function Main(props) {
     const { questions } = props
     const [allAnswers, setAllAnswers] = React.useState([{}])
-    
-    React.useEffect(() => {
-        return (
-            setAllAnswers(questions.map(question => {
+    const myQuiz = 
+        questions.map(question => {
                 return {
                     id: nanoid(),
                     key: nanoid(),
@@ -18,36 +16,45 @@ export default function Main(props) {
                     options: 
                     [
                         {
-                            correctAnswer: question.answers.correctAnswer,
-                            selected: false
+                            option: question.answers.correctAnswer,
+                            correct: true,
+                            selected: false,
+                            id: nanoid()
                         },
                         {
-                            incorrectAnswer1: question.answers.incorrectAnswers[0],
-                            selected: false
+                            option: question.answers.incorrectAnswers[0],
+                            correct: false,
+                            selected: false,
+                            id: nanoid()
                         },
                         {
-                            incorrectAnswer1: question.answers.incorrectAnswers[1],
-                            selected: false
+                            option: question.answers.incorrectAnswers[1],
+                            correct: false,
+                            selected: false,
+                            id: nanoid()
                         },
                         {
-                            incorrectAnswer1: question.answers.incorrectAnswers[2],
-                            selected: false
+                            option: question.answers.incorrectAnswers[2],
+                            correct: false,
+                            selected: false,
+                            id: nanoid()
                         },
                     ],
                     selectedAnswer: "",
                     difficulty: question.difficulty
         
-                }
-            }))
+                }}
         )
-    }, [])
-
     function toggle(id) {
-        console.log(id)
+        myQuiz.map(quiz => {
+           return {
+            [quiz.options.id]: id ? {...quiz, selected: !quiz.options.selected} : {...quiz, selected: false}
+           }
+        })
     }
 
-    const myQuiz = 
-    allAnswers.map(quiz => {
+    const quiz = 
+    myQuiz.map(quiz => {
         return (
             <Quiz 
                 id={quiz.id}
@@ -63,7 +70,7 @@ export default function Main(props) {
     return (
         <div className="main">
             <div className="quiz--container">
-
+                {quiz}
             </div>
             <button 
                 className="submit-button"
