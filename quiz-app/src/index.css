@@ -10,6 +10,7 @@ body {
   align-items: center;
   justify-content: center;
   flex-direction: column;
+  margin-top: 50px;
 }
 .no-quiz{
   margin-top: 20%;
@@ -47,6 +48,10 @@ body {
   margin-top: 30px;
 }
 
+.answer-button-holder {
+  display: flex;
+  flex-direction: row;
+}
 .button--answer {
   font-family: inherit;
   font-weight: bold;

@@ -15,19 +15,27 @@ export default function Main(props) {
                 [
                     {
                         option: datapoint.correct_answer,
-                        correct: true
+                        correct: true,
+                        selected: false,
+                        id: nanoid()
                     },
                     {
                         option: datapoint.incorrect_answers[0],
-                        correct: false
+                        correct: false,
+                        selected: false,
+                        id: nanoid()
                     },
                     {
                         option: datapoint.incorrect_answers[1],
-                        correct: false
+                        correct: false,
+                        selected: false,
+                        id: nanoid()
                     },
                     {
                         option: datapoint.incorrect_answers[2],
-                        correct: false
+                        correct: false,
+                        selected: false,
+                        id: nanoid()
                     },
                 ],
                 difficulty: datapoint.difficulty
@@ -45,5 +53,20 @@ export default function Main(props) {
         )
     })
 
+    const quizzes = 
+    shuffledQuestionnaire.map(question => {
+        return (
+            <Quiz 
+            quizData = {question}
+            key = {nanoid()}
+            className="quiz"
+            />
+        )
+    })
 
+    return (
+        <div className="main">
+            {quizzes}
+        </div>
+    )
 }
