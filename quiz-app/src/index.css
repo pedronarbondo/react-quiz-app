@@ -117,3 +117,16 @@ body {
 .incorrect {
   background-color: red;
 }
+
+.final-submit-button {
+  font-size: 1.2rem;
+  margin-top: 30px;
+  border: none;
+  padding: 4px 8px;
+  border-radius: 8px;
+  font-family: inherit;
+  font-weight: bold;
+  background-color: #273058;
+  color: white;
+  cursor: pointer;
+}

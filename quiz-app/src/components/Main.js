@@ -54,9 +54,6 @@ export default function Main(props) {
         )
     })
 
-    //to make a counter, create a state called correctcounter and pass a function 
-    // that sets the count +1 when the submit button is pressed and answer is correct.
-
     const quizzes = 
     shuffledQuestionnaire.map(question => {
         return (
@@ -71,6 +68,7 @@ export default function Main(props) {
     return (
         <div className="main">
             {quizzes}
+            <button className="final-submit-button">Tally correct answers</button>
         </div>
     )
 }

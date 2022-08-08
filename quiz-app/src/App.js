@@ -16,10 +16,12 @@ function App() {
     setPlaying(prevPlaying => !prevPlaying)
   }
   
+  
   return (
     playing ?
     <div className="main">
-      <Main data={apiData}
+      <Main 
+        data={apiData}
       />
     </div>
     : 
