@@ -7,8 +7,25 @@ import { nanoid } from "nanoid"
 
 
 export default function Quiz(props) {
+
+
     const { quizData } = props 
     const [quiz, setQuiz] = React.useState(quizData)
+
+
+    function toggle(id) {
+        setQuiz(prevQuiz => {
+            const newOptions = []
+            prevQuiz.options.map(option => {
+                option.id === id ? 
+                newOptions.push({...option, selected: !option.selected}):
+                newOptions.push({...option, selected: false})
+            })
+            return {
+                ...prevQuiz, options: newOptions
+            }
+        })
+    }
 
     const buttons = 
     quiz.options.map(option => {
@@ -26,21 +43,17 @@ export default function Quiz(props) {
             </div>
         )
     })
-    console.log(quiz)
-    
-    function toggle(id) {
-        console.log(id)
-    }
-
-
     return (
         <div className="quiz">
             <h3 className="quiz--title">{quiz.question}</h3>
             <div className="answer-button-holder">
                 {buttons}
             </div>
+            <div className="submit--holder">
+                <button className="submit--button">Submit answer</button>
+                <h3 className="result">✔️ Correct!</h3>
+            </div>
             <hr className="line-break"></hr>
         </div>
     )
-    
 }
