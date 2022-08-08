@@ -16,7 +16,7 @@ function App() {
     setPlaying(prevPlaying => !prevPlaying)
   }
   
-  
+
   return (
     playing ?
     <div className="main">

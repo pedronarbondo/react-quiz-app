@@ -3,7 +3,6 @@ import Quiz from "./Quiz"
 import { nanoid } from "nanoid"
 import Shuffle from "./Shuffle"
 
-
 export default function Main(props) {
     const { data } = props
     const questionnaire = 
@@ -68,7 +67,10 @@ export default function Main(props) {
     return (
         <div className="main">
             {quizzes}
-            <button className="final-submit-button">Tally correct answers</button>
+            <button 
+                className="final-submit-button"
+                onClick={() => window.location.reload(false)}
+                >Restart Game</button>
         </div>
     )
 }

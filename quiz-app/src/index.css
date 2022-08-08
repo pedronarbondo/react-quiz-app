@@ -121,6 +121,7 @@ body {
 .final-submit-button {
   font-size: 1.2rem;
   margin-top: 30px;
+  margin-bottom: 30px;
   border: none;
   padding: 4px 8px;
   border-radius: 8px;
@@ -129,4 +130,5 @@ body {
   background-color: #273058;
   color: white;
   cursor: pointer;
+
 }
