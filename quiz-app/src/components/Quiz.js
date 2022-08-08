@@ -14,6 +14,7 @@ export default function Quiz(props) {
 
 
     function toggle(id) {
+        return quiz.showAnswer ? console.log("already submitted") : 
         setQuiz(prevQuiz => {
             const newOptions = []
             prevQuiz.options.map(option => {
@@ -28,7 +29,22 @@ export default function Quiz(props) {
     }
 
     function handleSubmit() {
+        setQuiz(prevQuiz => {
+            return {
+                ...prevQuiz,
+                showAnswer: true
+            }
+        })
+    }
 
+    function revealColor(option) {
+        
+        if (quiz.showAnswer && option.correct) {
+            return "correct"
+        }
+        else if (quiz.showAnswer && option.incorrect) {
+            return "incorrect"
+        }
     }
 
     const buttons = 
@@ -37,7 +53,12 @@ export default function Quiz(props) {
             <div 
                 key={nanoid()}>
                 <button 
-                    className={`button--answer ${option.selected ? "selected" : ""}`}
+                    className=
+                    {
+                        `button--answer ${option.selected ? "selected" : ""}
+                        ${revealColor(option)}    
+                    `
+                    }
                     id={option.id}
                     onClick={() => toggle(option.id)}
                     >
@@ -55,7 +76,10 @@ export default function Quiz(props) {
             </div>
             <div className="submit--holder">
                 <button className="submit--button" onClick={handleSubmit}>Submit answer</button>
-                <h3 className="result">
+                <h3 
+                    className="result"
+                    style={quiz.showAnswer ? {display: "block"} : {display: "none"}}
+                    >
                 {
                     quiz.options[0].correct && quiz.options[0].selected ||
                     quiz.options[1].correct && quiz.options[1].selected ||

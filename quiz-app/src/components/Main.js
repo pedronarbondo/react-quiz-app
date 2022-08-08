@@ -38,7 +38,8 @@ export default function Main(props) {
                         id: nanoid()
                     },
                 ],
-                difficulty: datapoint.difficulty
+                difficulty: datapoint.difficulty,
+                showAnswer: false
             }
         )
     })
@@ -52,6 +53,9 @@ export default function Main(props) {
             }
         )
     })
+
+    //to make a counter, create a state called correctcounter and pass a function 
+    // that sets the count +1 when the submit button is pressed and answer is correct.
 
     const quizzes = 
     shuffledQuestionnaire.map(question => {
