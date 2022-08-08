@@ -1,80 +1,49 @@
 import React from "react"
 import Quiz from "./Quiz"
-import Shuffle from "./Shuffle"
 import { nanoid } from "nanoid"
+import Shuffle from "./Shuffle"
 
 
 export default function Main(props) {
-    const { questions } = props
-    const [allAnswers, setAllAnswers] = React.useState([{}])
-    const myQuiz = 
-        questions.map(question => {
-                return {
-                    id: nanoid(),
-                    key: nanoid(),
-                    title: question.question,
-                    options: 
-                    [
-                        {
-                            option: question.answers.correctAnswer,
-                            correct: true,
-                            selected: false,
-                            id: nanoid()
-                        },
-                        {
-                            option: question.answers.incorrectAnswers[0],
-                            correct: false,
-                            selected: false,
-                            id: nanoid()
-                        },
-                        {
-                            option: question.answers.incorrectAnswers[1],
-                            correct: false,
-                            selected: false,
-                            id: nanoid()
-                        },
-                        {
-                            option: question.answers.incorrectAnswers[2],
-                            correct: false,
-                            selected: false,
-                            id: nanoid()
-                        },
-                    ],
-                    selectedAnswer: "",
-                    difficulty: question.difficulty
-        
-                }}
-        )
-    function toggle(id) {
-        myQuiz.map(quiz => {
-           return {
-            [quiz.options.id]: id ? {...quiz, selected: !quiz.options.selected} : {...quiz, selected: false}
-           }
-        })
-    }
-
-    const quiz = 
-    myQuiz.map(quiz => {
+    const { data } = props
+    const questionnaire = 
+    data.map(datapoint => {
         return (
-            <Quiz 
-                id={quiz.id}
-                key={quiz.key}
-                question={quiz.title}
-                options={quiz.options}
-                difficulty={quiz.difficulty}
-                toggle={toggle}
-            />
+            {
+                question: datapoint.question,
+                options: 
+                [
+                    {
+                        option: datapoint.correct_answer,
+                        correct: true
+                    },
+                    {
+                        option: datapoint.incorrect_answers[0],
+                        correct: false
+                    },
+                    {
+                        option: datapoint.incorrect_answers[1],
+                        correct: false
+                    },
+                    {
+                        option: datapoint.incorrect_answers[2],
+                        correct: false
+                    },
+                ],
+                difficulty: datapoint.difficulty
+            }
+        )
+    })
+    // this has the options shuffled so that the correct answer is random
+    const shuffledQuestionnaire = 
+    questionnaire.map(question => {
+        return (
+            {
+                ...question,
+                options: Shuffle(question.options)
+            }
         )
     })
 
-    return (
-        <div className="main">
-            <div className="quiz--container">
-                {quiz}
-            </div>
-            <button 
-                className="submit-button"
-                >Submit answers</button>
-        </div>
-    )
+
 }

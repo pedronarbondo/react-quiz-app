@@ -39,7 +39,7 @@ body {
   align-items: center;
 }
 
-.quiz--question {
+.quiz--title {
   max-width: 60ch;
 }
 .line-break {
