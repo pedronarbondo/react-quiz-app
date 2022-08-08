@@ -27,6 +27,10 @@ export default function Quiz(props) {
         })
     }
 
+    function handleSubmit() {
+
+    }
+
     const buttons = 
     quiz.options.map(option => {
         return (
@@ -50,8 +54,19 @@ export default function Quiz(props) {
                 {buttons}
             </div>
             <div className="submit--holder">
-                <button className="submit--button">Submit answer</button>
-                <h3 className="result">✔️ Correct!</h3>
+                <button className="submit--button" onClick={handleSubmit}>Submit answer</button>
+                <h3 className="result">
+                {
+                    quiz.options[0].correct && quiz.options[0].selected ||
+                    quiz.options[1].correct && quiz.options[1].selected ||
+                    quiz.options[2].correct && quiz.options[2].selected ||
+                    quiz.options[3].correct && quiz.options[3].selected
+                    ?
+                "✔️ Correct!" : 
+                "❌ Incorrect"
+            }
+            </h3>
+                
             </div>
             <hr className="line-break"></hr>
         </div>
