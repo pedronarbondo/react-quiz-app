@@ -1,4 +1,4 @@
-# react-quiz-app
+# react-quiz-app (WiP)
 
 This is the first project I've developed using React. It was part of a Scrimba course on React.
 
